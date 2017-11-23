@@ -1,60 +1,63 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <img src="./assets/logo.png" class="logo">
+    <h1>Vue Github Profile</h1>
+    <search-profile></search-profile>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import searchProfile from './components/SearchProfile.vue'
+
+  export default {
+    name: 'app',
+
+    components: {
+      searchProfile
+    },
+
+    data () {
+      return {
+      }
     }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    font: normal normal 16px/1.5 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 
-h1, h2 {
-  font-weight: normal;
-}
+  #app {
+    width: 90%;
+    text-align: center;
+    color: #2c3e50;
+    margin: 0 auto;
+    padding: 2em 2em 0 2em;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-a {
-  color: #42b983;
-}
+  li {
+    display: inline-block;
+    margin: 0;
+  }
+
+  a {
+    color: #42b983;
+  }
+
+  .logo {
+    width: 80px;
+  }
 </style>
