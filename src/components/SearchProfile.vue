@@ -63,36 +63,38 @@
       },
 
       fetchProfile() {
-        this.error = null
-        this.show.error = false
-        this.show.user = false
-        this.show.loader = true
+        if (!this.user.login || this.user.login != this.profile) {
+          this.error = null
+          this.show.error = false
+          this.show.user = false
+          this.show.loader = true
 
-        setTimeout(() => {
-          fetch(`${this.apiUrl}/${this.profile}`)
-          .then(response => {
-            if (response.ok) {
-              return response.json()
-            } else {
-              throw new Error('User not found')
-            }
-          })
-          .then(data => {
-            this.user.avatar_url = data.avatar_url
-            this.user.followers = data.followers
-            this.user.following = data.following
-            this.user.location = data.location
-            this.user.login = data.login
-            this.user.name = data.name
-            this.user.public_repos = data.public_repos
-            this.show.loader = false
-            this.show.user = true
-          })
-          .catch(err => {
-            this.error = err.message
-            this.show.error = true
-          })
-        }, 2000)
+          setTimeout(() => {
+            fetch(`${this.apiUrl}/${this.profile}`)
+            .then(response => {
+              if (response.ok) {
+                return response.json()
+              } else {
+                throw new Error('User not found')
+              }
+            })
+            .then(data => {
+              this.user.avatar_url = data.avatar_url
+              this.user.followers = data.followers
+              this.user.following = data.following
+              this.user.location = data.location
+              this.user.login = data.login
+              this.user.name = data.name
+              this.user.public_repos = data.public_repos
+              this.show.loader = false
+              this.show.user = true
+            })
+            .catch(err => {
+              this.error = err.message
+              this.show.error = true
+            })
+          }, 2000)
+        }
       }
     }
   }
