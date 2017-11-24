@@ -232,8 +232,9 @@
   }
 
   .error-message {
-    font-size: 1.4em;
+    font-size: 1.2em;
+    text-transform: uppercase;
     color: #c03;
-    margin-top: 1.6em;
+    margin-top: 2.2em;
   }
 </style>
