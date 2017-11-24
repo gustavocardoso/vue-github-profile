@@ -58,6 +58,6 @@
   }
 
   .logo {
-    width: 80px;
+    width: 50px;
   }
 </style>
