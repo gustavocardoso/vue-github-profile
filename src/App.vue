@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img src="./assets/logo.png" class="logo">
     <h1>Vue Github Profile</h1>
     <search-profile></search-profile>
   </div>
