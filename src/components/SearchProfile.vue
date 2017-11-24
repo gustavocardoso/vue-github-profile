@@ -42,7 +42,7 @@
         show: {
           error: false,
           loader: false,
-          user: false,
+          user: false
         },
         user: {
           avatar_url: null,
@@ -52,18 +52,17 @@
           login: null,
           name: null,
           public_repos: null
-        },
-
+        }
       }
     },
 
     methods: {
-      clearField() {
+      clearField () {
         this.profile = ''
       },
 
-      fetchProfile() {
-        if (!this.user.login || this.user.login != this.profile) {
+      fetchProfile () {
+        if (!this.user.login || this.user.login !== this.profile) {
           this.error = null
           this.show.error = false
           this.show.user = false
