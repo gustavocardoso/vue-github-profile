@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## Website
+
+You can see the projrct running here: [https://gustavocardoso.github.io/vue-github-profile/](https://gustavocardoso.github.io/vue-github-profile/)
+
 ## Build Setup
 
 ``` bash
