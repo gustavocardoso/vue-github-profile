@@ -90,6 +90,8 @@
             })
             .catch(err => {
               this.error = err.message
+              this.show.user = false
+              this.show.loader = false
               this.show.error = true
             })
           }, 2000)
@@ -227,5 +229,11 @@
       text-align: left;
       padding: 0 2em;
     }
+  }
+
+  .error-message {
+    font-size: 1.4em;
+    color: #c03;
+    margin-top: 1.6em;
   }
 </style>
