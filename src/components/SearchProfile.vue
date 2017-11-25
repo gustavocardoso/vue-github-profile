@@ -2,14 +2,10 @@
   <div>
     <div class="search-box">
       <input type="text" v-model="profile" placeholder="type a github profile" v-on:focus="clearField" class="profile">
-      <button v-on:click="fetchProfile" class="search">search</button>
+      <button v-on:click="fetchProfile" class="btn">search</button>
     </div>
 
-    <div class="loader" v-if="show.loader">
-      <div class="bullet"></div>
-      <div class="bullet"></div>
-      <div class="bullet"></div>
-    </div>
+    <loader v-if="show.loader"></loader>
 
     <div v-if="show.user" class="user-profile">
       <img v-bind:src="user.avatar_url" class="avatar">
@@ -23,6 +19,10 @@
           <li class="followers">Followers: <strong>{{ user.followers }}</strong></li>
           <li class="following">Following: <strong>{{ user.following }}</strong></li>
         </ul>
+
+        <ul class="actions">
+          <li><button class="btn">List repos</button></li>
+        </ul>
       </div>
     </div>
 
@@ -31,8 +31,14 @@
 </template>
 
 <script>
+  import Loader from './helpers/Loader'
+
   export default {
     name: 'SearchProfile',
+
+    components: {
+      Loader
+    },
 
     data () {
       return {
@@ -126,7 +132,7 @@
     color: #35495E;
   }
 
-  .search {
+  .btn {
     display: block;
     font-size: 1em;
     font-weight: 700;
@@ -135,6 +141,17 @@
     border-radius: .4em;
     border: 0;
     padding: .6em;
+  }
+
+  .actions .btn {
+    font-size: .8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    background: #35495E;
+    margin-left: 0;
+    padding: .3em .6em;
+    cursor: pointer;
   }
 
   .user-profile {
@@ -166,49 +183,17 @@
     color: #41B883;
   }
 
-  .loader {
-    display: flex;
-    width: 50%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 3em auto 0 auto;
-  }
-
-  .bullet {
-    width: 1em;
-    height: 1em;
-    background: #ccc;
-    border-radius: 50%;
-    margin: 0 1em;
-  }
-
-  .bullet:nth-child(1) {
-    animation: bounce .5s infinite ease-in-out;
-  }
-  .bullet:nth-child(2) {
-    animation: bounce .5s .1s infinite ease-in-out;
-  }
-  .bullet:nth-child(3) {
-    animation: bounce .5s .2s infinite ease-in-out;
-  }
-
-  @keyframes bounce {
-    0% {
-      transform: scale3d(1, 1, 1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale3d(1.4, 1.4, 1.4);
-      opacity: .1;
-    }
-    100% {
-      transform: scale3d(1, 1, 1);
-      opacity: 1;
-    }
-  }
-
   @media screen and (min-width: 50em) {
+    .search-box {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .btn {
+      margin-left: 1em;
+    }
+
     .profile {
       width: 22%;
       padding: .6em;
