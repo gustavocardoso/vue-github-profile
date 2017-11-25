@@ -1,30 +1,12 @@
 <template>
   <div>
     <div class="search-box">
-      <input type="text" v-model="profile" placeholder="type a github profile" v-on:focus="clearField" class="profile">
-      <button v-on:click="fetchProfile" class="btn">search</button>
+      <input type="text" v-model="profile" placeholder="type a github profile" v-on:focus="clearField" v-on:keyup.enter="fetchProfile" class="profile">
     </div>
 
     <loader v-if="show.loader"></loader>
 
-    <div v-if="show.user" class="user-profile">
-      <img v-bind:src="user.avatar_url" class="avatar">
-
-      <div class="info">
-        <h2 class="name">{{ user.name }}</h2>
-        <p class="login">{{ user.login }}</p>
-
-        <ul class="meta">
-          <li class="repos">Repos: <strong>{{ user.public_repos }}</strong></li>
-          <li class="followers">Followers: <strong>{{ user.followers }}</strong></li>
-          <li class="following">Following: <strong>{{ user.following }}</strong></li>
-        </ul>
-
-        <ul class="actions">
-          <li><button class="btn">List repos</button></li>
-        </ul>
-      </div>
-    </div>
+    <user-profile :user="user" v-if="show.user"></user-profile>
 
     <p class="error-message" v-if="show.error">{{ error }}</p>
   </div>
@@ -32,12 +14,14 @@
 
 <script>
   import Loader from './helpers/Loader'
+  import UserProfile from './UserProfile'
 
   export default {
     name: 'SearchProfile',
 
     components: {
-      Loader
+      Loader,
+      UserProfile
     },
 
     data () {
@@ -50,15 +34,7 @@
           loader: false,
           user: false
         },
-        user: {
-          avatar_url: null,
-          followers: null,
-          following: null,
-          location: null,
-          login: null,
-          name: null,
-          public_repos: null
-        }
+        user: {}
       }
     },
 
@@ -69,6 +45,7 @@
 
       fetchProfile () {
         if (!this.user.login || this.user.login !== this.profile) {
+          this.user = {}
           this.error = null
           this.show.error = false
           this.show.user = false
@@ -84,13 +61,7 @@
               }
             })
             .then(data => {
-              this.user.avatar_url = data.avatar_url
-              this.user.followers = data.followers
-              this.user.following = data.following
-              this.user.location = data.location
-              this.user.login = data.login
-              this.user.name = data.name
-              this.user.public_repos = data.public_repos
+              this.user = data
               this.show.loader = false
               this.show.user = true
             })
@@ -132,57 +103,6 @@
     color: #35495E;
   }
 
-  .btn {
-    display: block;
-    font-size: 1em;
-    font-weight: 700;
-    color: #eee;
-    background: #41B883;
-    border-radius: .4em;
-    border: 0;
-    padding: .6em;
-  }
-
-  .actions .btn {
-    font-size: .8em;
-    font-weight: normal;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-    background: #35495E;
-    margin-left: 0;
-    padding: .3em .6em;
-    cursor: pointer;
-  }
-
-  .user-profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 3em 0;
-  }
-
-  .avatar {
-    width: 40%;
-    border-radius: 2em;
-    border: 5px solid #eee;
-    box-shadow: 0 .2em 1em 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 1em;
-  }
-
-  .name {
-    font-size: 2em;
-    font-weight: 700;
-    letter-spacing: -.05em;
-    color: #35495E;
-    margin: 0;
-  }
-
-  .login {
-    font-size: 1.4em;
-    color: #41B883;
-  }
-
   @media screen and (min-width: 50em) {
     .search-box {
       flex-direction: row;
@@ -190,29 +110,9 @@
       align-items: flex-start;
     }
 
-    .btn {
-      margin-left: 1em;
-    }
-
     .profile {
       width: 22%;
       padding: .6em;
-    }
-
-    .user-profile {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      margin: 3em 0;
-    }
-
-    .avatar {
-      width: 20%;
-    }
-
-    .info {
-      text-align: left;
-      padding: 0 2em;
     }
   }
 
