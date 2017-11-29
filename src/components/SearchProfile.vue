@@ -6,7 +6,7 @@
 
     <loader v-if="show.loader"></loader>
 
-    <user-profile :user="user" v-if="show.user"></user-profile>
+    <user-profile v-bind:user="user" v-if="show.user"></user-profile>
 
     <p class="error-message" v-if="show.error">{{ error }}</p>
   </div>
@@ -79,10 +79,6 @@
 </script>
 
 <style scoped>
-  p {
-    margin: 0;
-  }
-
   .search-box {
     display: flex;
     flex-direction: column;
@@ -111,15 +107,8 @@
     }
 
     .profile {
-      width: 22%;
+      width: 35%;
       padding: .6em;
     }
-  }
-
-  .error-message {
-    font-size: 1.2em;
-    text-transform: uppercase;
-    color: #c03;
-    margin-top: 2.2em;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png" class="logo">
-    <h1>Vue Github Profile</h1>
+    <h1 class="page-title">Vue Github Profile</h1>
     <search-profile></search-profile>
   </div>
 </template>
@@ -24,6 +24,12 @@
 </script>
 
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
     font: normal normal 16px/1.5 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -59,5 +65,22 @@
 
   .logo {
     width: 50px;
+  }
+
+  .page-title {
+    margin-bottom: .5em;
+  }
+
+  .error-message {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #c03;
+    margin-top: 2.2em;
+  }
+
+  @media screen and (min-width: 50em) {
+    #app {
+      width: 64%;
+    }
   }
 </style>

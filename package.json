@@ -1,7 +1,7 @@
 {
-  "name": "vue-gh-profile",
+  "name": "vue-github-profile",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A simple Vue.js application to show a Github profile",
   "author": "Gustavo Cardoso <gustavocardoso@gmail.com>",
   "private": true,
   "homepage": "https://github.com/gustavocardoso/vue-github-profile",

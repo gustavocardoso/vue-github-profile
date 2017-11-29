@@ -1,6 +1,6 @@
-# vue-gh-profile
+# vue-github-profile
 
-> A Vue.js project
+> A simple Vue.js application to show a Github profile
 
 ## Website
 
